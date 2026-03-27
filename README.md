@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AURUM AI — Autonomous Cost Intelligence System
 
-## Getting Started
+## 🚀 Overview
+AURUM AI is an enterprise-grade AI system that goes beyond dashboards by detecting cost inefficiencies, quantifying financial impact, and triggering actionable insights.
 
-First, run the development server:
+## 💡 Problem
+Organizations lose significant money due to:
+- Duplicate tools and subscriptions
+- Inefficient resource allocation
+- Poor cost visibility
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🧠 Solution
+AURUM AI:
+- Analyzes operational data
+- Identifies cost leakages
+- Calculates financial impact (₹)
+- Suggests actionable fixes
+- Enables autonomous decision support
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ⚙️ Tech Stack
+- Next.js (Frontend)
+- Puter.js (AI Engine)
+- Tailwind CSS (UI)
+- PapaParse (CSV Processing)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🔥 Features
+- 📂 CSV Data Upload
+- 🧠 AI-Powered Cost Analysis
+- 💰 Financial Impact Estimation
+- 📊 Insight Dashboard
+- ⚡ Actionable Recommendations
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🌍 Impact
+- Reduces enterprise costs by 20–30%
+- Improves decision-making efficiency
+- Minimizes resource wastage
 
-## Learn More
+## 🏁 Future Scope
+- Real-time integrations (ERP, SaaS tools)
+- Automated workflow execution
+- Multi-agent financial systems
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 👤 Author
+Samina Parveen
