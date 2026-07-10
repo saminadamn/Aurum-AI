@@ -1,0 +1,9 @@
+Vendor,Tool,Department,Cost_INR,Licenses_Purchased,Licenses_Active,Renewal_Date
+Adobe,Creative Cloud,Design,185000,40,22,2026-09-15
+Amplitude,Product Analytics,Product,212000,15,14,2026-11-01
+Mixpanel,Product Analytics,Marketing,200000,10,9,2026-08-20
+AWS,EC2 Staging,Engineering,268500,1,1,2026-12-31
+Zendesk,Support Suite,Support,145000,25,24,2026-10-05
+Slack,Enterprise Grid,Company-wide,320000,300,278,2027-01-15
+Salesforce,Sales Cloud,Sales,410000,60,57,2026-09-30
+CloudVendorX,Managed Hosting,Engineering,156000,1,1,2026-07-01

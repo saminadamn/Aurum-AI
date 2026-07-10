@@ -1,48 +1,54 @@
-import { openai } from "@/lib/openai";
+import { getOpenAIClient } from "@/lib/openai";
 
 export async function POST(req: Request) {
   try {
     const { data } = await req.json();
 
+    if (!Array.isArray(data) || data.length === 0) {
+      return Response.json({ error: "No ledger data provided." }, { status: 400 });
+    }
+
+    const openai = getOpenAIClient();
+
     const prompt = `
-You are AURUM AI — an enterprise cost intelligence system.
+You are AURUM AI, an enterprise cost intelligence system operating as three specialized agents:
+Spend Agent (duplicate tools, subscriptions, licensing waste), SLA Agent (vendor SLA and contract
+credit exposure), and Resource Agent (idle or over-provisioned infrastructure).
 
-Analyze this data:
-${JSON.stringify(data)}
+Analyze this operational/spend data:
+${JSON.stringify(data.slice(0, 40))}
 
-Tasks:
-1. Detect cost leakages
-2. Find duplicate tools/vendors
-3. Identify inefficiencies
+Identify 3 to 6 distinct, concrete findings across the three agents. For each finding, quantify the
+financial impact in Indian Rupees.
 
-For each issue:
-- issue
-- financial impact (₹)
-- severity (High/Medium/Low)
-- actionable fix
-
-Return STRICT JSON:
-[
-  {
-    "issue": "",
-    "impact": "",
-    "severity": "",
-    "action": ""
-  }
-]
+Return STRICT JSON with this exact shape and no additional commentary:
+{
+  "findings": [
+    {
+      "agent": "Spend Agent" | "SLA Agent" | "Resource Agent",
+      "issue": "short headline of the problem",
+      "loss_inr": 123456,
+      "severity": "High" | "Medium" | "Low",
+      "impact": "one to two sentence explanation of the financial/operational consequence",
+      "action": "concrete recommended fix"
+    }
+  ]
+}
 `;
 
     const response = await openai.chat.completions.create({
       model: "gpt-4o-mini",
+      response_format: { type: "json_object" },
       messages: [{ role: "user", content: prompt }],
     });
 
-    return Response.json({
-      result: response.choices[0].message.content,
-    });
+    const raw = response.choices[0].message.content ?? "{}";
+    const parsed = JSON.parse(raw);
 
-  } catch (error: any) {
-  console.error("FULL ERROR:", error);
-  return Response.json({ error: error.message });
-}
+    return Response.json({ findings: parsed.findings ?? [] });
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : "Unknown error during analysis.";
+    console.error("AURUM analyze error:", message);
+    return Response.json({ error: message }, { status: 500 });
+  }
 }
