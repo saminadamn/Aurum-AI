@@ -19,7 +19,7 @@ Organizations routinely lose money to duplicate tools and subscriptions, ineffic
 - **Actionable Recommendations** — Concrete next steps rather than raw metrics
 
 ## System Design Architecture
-<img width="3855" height="4978" alt="Client-Driven API Graph-2026-07-10-083357" src="https://github.com/user-attachments/assets/3060e160-7984-42fb-9ef0-e36f821a1a6e" />
+<img width="8192" height="1122" alt="Client-Driven API Graph-2026-07-10-083843" src="https://github.com/user-attachments/assets/ca0601d4-cade-4c84-a7e0-593be398eb7c" />
 
 ## Tech Stack
 
