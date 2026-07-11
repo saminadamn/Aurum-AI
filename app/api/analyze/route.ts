@@ -1,4 +1,4 @@
-import { getOpenAIClient } from "@/lib/openai";
+import { getAIClient, AI_MODEL } from "@/lib/ai";
 
 export async function POST(req: Request) {
   try {
@@ -8,7 +8,7 @@ export async function POST(req: Request) {
       return Response.json({ error: "No ledger data provided." }, { status: 400 });
     }
 
-    const openai = getOpenAIClient();
+    const ai = getAIClient();
 
     const prompt = `
 You are AURUM AI, an enterprise cost intelligence system operating as three specialized agents:
@@ -36,8 +36,8 @@ Return STRICT JSON with this exact shape and no additional commentary:
 }
 `;
 
-    const response = await openai.chat.completions.create({
-      model: "gpt-4o-mini",
+    const response = await ai.chat.completions.create({
+      model: AI_MODEL,
       response_format: { type: "json_object" },
       messages: [{ role: "user", content: prompt }],
     });

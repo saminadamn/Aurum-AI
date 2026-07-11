@@ -30,7 +30,7 @@ Organizations routinely lose money to duplicate tools and subscriptions, ineffic
 | Framework | [Next.js](https://nextjs.org/) 16 (App Router) |
 | UI | React 19, [Tailwind CSS](https://tailwindcss.com/) 4 |
 | Language | TypeScript |
-| AI Engine | [OpenAI API](https://platform.openai.com/) (`gpt-4o-mini`, JSON mode) |
+| AI Engine | [Groq](https://groq.com/) (`llama-3.3-70b-versatile`, JSON mode, free tier) |
 | Data Processing | [PapaParse](https://www.papaparse.com/) (CSV parsing) |
 | PDF Export | jsPDF + html2canvas |
 | Icons | lucide-react |
@@ -53,7 +53,7 @@ Aurum-AI/
 │   ├── Dashboard.tsx           # Renders AI-generated findings (agent, issue, impact, severity, action)
 │   └── Footer.tsx
 ├── lib/
-│   ├── openai.ts                # OpenAI client factory
+│   ├── ai.ts                     # Groq (OpenAI-compatible) client factory
 │   ├── types.ts                 # Shared Finding / LedgerStats types
 │   └── sample-data.ts          # Demo-mode sample findings and CSV
 └── public/
@@ -65,7 +65,7 @@ Aurum-AI/
 ### Prerequisites
 
 - Node.js 18+
-- An [OpenAI API key](https://platform.openai.com/api-keys)
+- A free [Groq API key](https://console.groq.com/keys) (no credit card required)
 
 ### Installation
 
@@ -80,8 +80,13 @@ npm install
 Create a `.env.local` file in the project root:
 
 ```
-OPENAI_API_KEY=your_openai_api_key_here
+GROQ_API_KEY=your_groq_api_key_here
 ```
+
+Get a free key at [console.groq.com/keys](https://console.groq.com/keys). If you'd rather use a
+different provider, swap the client in `lib/ai.ts` — it's a thin wrapper around the OpenAI SDK
+pointed at Groq's OpenAI-compatible endpoint, so any OpenAI-compatible API (Google Gemini's
+`generativelanguage.googleapis.com/v1beta/openai/`, OpenRouter, etc.) works with a small edit.
 
 ### Run Locally
 
@@ -101,7 +106,7 @@ npm start
 ## How It Works
 
 1. Upload a CSV of operational or spend data via the **Upload** component, or click **Load Demo Findings** to explore the dashboard with sample data.
-2. The `/api/analyze` route sends the parsed ledger to the OpenAI API, prompted to review the data as three specialized agents — Spend Agent, SLA Agent, and Resource Agent.
+2. The `/api/analyze` route sends the parsed ledger to Groq's free LLM API, prompted to review the data as three specialized agents — Spend Agent, SLA Agent, and Resource Agent.
 3. The model returns structured findings — agent, issue, financial impact (₹), severity, and recommended action — as strict JSON.
 4. The **Dashboard** renders these findings as a newspaper-style audit ledger, ranked by severity, with a live "Recoverable Capital" total.
 5. Mark a finding **Resolved** to remove it from the outstanding total, or export the whole ledger as a PDF via **Download Executive Summary**.
